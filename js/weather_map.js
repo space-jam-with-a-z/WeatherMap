@@ -40,21 +40,14 @@ function fillData () {
             $('#wind3').html("<div>" + "<strong>Wind: </strong>" + darkSkyObj.daily.data[2].windSpeed + "<strong> MPH</strong>" + "</div>");
             $('#pressure3').html("<div>" + "<strong>Pressure: </strong>" + darkSkyObj.daily.data[2].pressure + "</div>");
         }
-
-
-        // console.log(darkSkyObj)
     });
-
 }
-
-
-
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZWJlaG5rZSIsImEiOiJjanNraWd2YWsyYTAxM3luc2M1anZ6bHAxIn0.FZhA0r4vtH7V7Elk9S0ZQQ';
 
-    var coordinates = document.getElementById('coordinates');
+var coordinates = document.getElementById('coordinates');
 
-    var mapStyle = {
+var mapStyle = {
     "version": 8,
     "name": "Dark",
     "sources": {
@@ -153,8 +146,6 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiZWJlaG5rZSIsImEiOiJjanNraWd2YWsyYTAxM3luc2M1a
     ]
 };
 
-
-
 var map = new mapboxgl.Map({
     container: 'map',
     style: mapStyle,
@@ -162,12 +153,13 @@ var map = new mapboxgl.Map({
     zoom: 3
 });
 
+console.log(map)
+
 var marker = new mapboxgl.Marker({
     draggable: true
 })
     .setLngLat([-98.4936, 29.4241])
     .addTo(map);
-
 
 function onDragEnd() {
     var lngLat = marker.getLngLat();
@@ -188,25 +180,34 @@ function onDragEnd() {
         console.log(data.split(", "));
         var dataArray = data.split(", ");
 
-
-        var displayLocation = dataArray[dataArray.length - 3] + ", " + dataArray[dataArray.length - 2] + ", " +  dataArray[dataArray.length - 1]
-
-
+        var displayLocation = dataArray[dataArray.length - 3] + ", " + dataArray[dataArray.length - 2] + ", " +  dataArray[dataArray.length - 1];
 
         console.log(displayLocation);
         $("#location").html(displayLocation);
 
+    });
+}
+
+    $('#search-btn').click(function () {
+       var x = $('#latInput').val();
+       var y = $('#lngInput').val();
+
+        reverseGeocode({lng: y, lat: x}, mapboxgl.accessToken).then(function(data){
+            // console.log(data);
+            // map.center = [y,x] //????
+
+        });
+
+        var searchedCoords = darkSkyUrl += "/" + x + "," + y;
+
+        console.log(searchedCoords);
+
+        fillData();
+
+        ///////////// troubleshooting search button. It will search if you click it when page first loads but will
+        // not work if clicked again.
 
     });
-
-
-
-
-
-
-
-
-}
 
 marker.on('dragend', onDragEnd);
 
@@ -214,39 +215,6 @@ marker.on('dragend', onDragEnd);
 
 
 
-
-
-
-
-
-
-//testing
-
-console.log(coordinates);
-
-
-
-
-
-
-
-
-
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // IIFE closing //
 // })();
