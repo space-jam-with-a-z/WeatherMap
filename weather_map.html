@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Title</title>
+    <title>Space Jam with a Z Weather Map</title>
     <!-- Font Awesome CSS -->
     <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
     <!-- Bootstrap CSS -->
@@ -24,10 +24,13 @@
         height: 500px;
         margin-top: 1em;
     }
-        div{
-            text-align: left;
-            border-radius: 10px;
-        }
+    div{
+        text-align: left;
+        border-radius: 10px;
+    }
+    #search-bar {
+        margin: 1em;
+    }
 
 
 </style>
@@ -96,14 +99,17 @@
             <p id="wind3">Wind: </p>
             <p id="pressure3">Pressure: </p>
         </div>
+        <div id="search-bar">
+            <input type="text" placeholder="Latitude" class="btn" id="latInput" value="41.1400">
+            <input type="text" placeholder="Longitute" class="btn" id="lngInput" value="-104.8202">
+            <button class="btn btn-secondary" id="search-btn" type="button">Search</button>
+        </div>
     </div>
 </div>
 
 
 <div id='map' class="container"></div>
 <pre id='coordinates' class='coordinates'></pre>
-
-
 
 
 
