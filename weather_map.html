@@ -11,9 +11,34 @@
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Local CSS -->
     <style></style>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css' rel='stylesheet'/>
+
+
+    <style>
+    body {
+        margin:1em;
+        padding:0;
+    }
+    #map {
+        width: 75%;
+        height: 500px;
+        margin-top: 1em;
+    }
+        div{
+            text-align: left;
+            border-radius: 10px;
+        }
+
+
+</style>
+
+
 </head>
 
+
+
 <body>
+
 
 <div class="container">
     <h1 class="text-center">Weather Application</h1>
@@ -75,6 +100,15 @@
 </div>
 
 
+<div id='map' class="container"></div>
+<pre id='coordinates' class='coordinates'></pre>
+
+
+
+
+
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script src="js/geocoding.js"></script>
 <!-- jQuery -->
 <script src="js/jquery-3.3.1.js"></script>
 <!-- Weather Map -->
