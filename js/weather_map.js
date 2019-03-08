@@ -4,23 +4,72 @@
 
 
 $(document).ready(function () {
-console.warn('The DOM has finished loading in JS!');
+
+var icons = [
+    {
+        name: "clear-day",
+        image:"img/Sun.svg"
+    },
+    {
+        name: "clear-night",
+        image: "img/Moon.svg"
+
+    },
+    {
+        name: "rain",
+        image:'img/Cloud-Drizzle.svg'
+    },
+    {
+        name:"snow",
+        image:'img/Cloud-Snow-Alt.svg'
+    },
+    {
+        name:'sleet',
+        image:'img/Cloud-Rain.svg'
+    },
+    {
+        name:'wind',
+        image:'img/Wind.svg'
+    },
+    {
+        name:'fog',
+        image:'img/Cloud-Fog-Alt.svg'
+    },
+    {
+        name:'cloudy',
+        image:'img/Cloud.svg'
+    },
+    {
+        name:'partly-cloudy-day',
+        image:'img/Cloud-Sun.svg'
+    },
+    {
+        name:'partly-cloudy-night',
+        image:'img/Cloud-Moon.svg'
+    }
+];
 
 var darkSkyUrl = "https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyToken;
 
 var dateObject = new Date(1551736889 * 1000);
 
-console.log(dateObject.toString());
+
 
 function fillData () {
 
     $.get(darkSkyUrl).done(function (darkSkyObj) {
-
         for (var i = 0; i < 2; i++) {
+
+           // for (var x = 0; x < icons.length; x++){}
+           //  var dailyIcon = darkSkyObj.daily.data[i].icon;
+           //  var iconImage  = icons[x].image;
+           //  if (dailyIcon === icons[x].name)
+           //      console.log(iconImage);
+
+
             //day 0
-
-
             $('#tempuratures').html("<div>" + "<strong>High Temp: </strong> " + Math.round(darkSkyObj.daily.data[0].apparentTemperatureHigh) + "&#176" + " " + "<strong>Low Temp: </strong>" + Math.round(darkSkyObj.daily.data[0].apparentTemperatureLow) + "&#176" + "</div>");
+            $('#img1').html('<div>' + '<img src=' + iconImage + '>' + '</div>');
             $('#clouds').html("<div>" + "<strong>Clouds: </strong>" + darkSkyObj.daily.data[0].icon.split("-").join(" ") + "</div>");
             $('#humidity').html("<div>" + "<strong>Humidity: </strong>" + (darkSkyObj.daily.data[0].humidity * 100).toFixed(0) + "%" + "</div>");
             $('#wind').html("<div>" + "<strong>Wind: </strong>" + darkSkyObj.daily.data[0].windSpeed + "<strong> MPH</strong>" + "</div>");
@@ -40,6 +89,7 @@ function fillData () {
             $('#wind3').html("<div>" + "<strong>Wind: </strong>" + darkSkyObj.daily.data[2].windSpeed + "<strong> MPH</strong>" + "</div>");
             $('#pressure3').html("<div>" + "<strong>Pressure: </strong>" + darkSkyObj.daily.data[2].pressure + "</div>");
         }
+
     });
 }
 
@@ -153,7 +203,7 @@ var map = new mapboxgl.Map({
     zoom: 3
 });
 
-console.log(map)
+// console.log(map)
 
 var marker = new mapboxgl.Marker({
     draggable: true
